@@ -9,10 +9,15 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@fortawesome/react-native-fontawesome": "^0.3.0",
     "expo": "~48.0.15",
     "expo-status-bar": "~1.4.4",
+    "formik": "^2.2.9",
+    "material-icons": "^1.13.6",
     "react": "18.2.0",
-    "react-native": "0.71.7"
+    "react-native": "0.71.7",
+    "react-native-web": "^0.19.4",
+    "react-router-native": "^6.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
