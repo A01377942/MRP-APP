@@ -2,6 +2,7 @@ import React from 'react'
 import {View, Text, ScrollView, StyleSheet, TouchableOpacity, TextInput} from 'react-native'
 import { Formik } from 'formik'
 import { FontAwesome } from '@expo/vector-icons'
+import { Link } from '@react-navigation/native'
 
 function Register() {
   return (
@@ -62,11 +63,11 @@ function Register() {
 
       <View style={styles.LoginButton}>
           <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Register</Text>
+          <Link to={{ screen: 'Login'}} style={styles.buttonText}>Register</Link>
           </TouchableOpacity>
           <View style={styles.centerText}>
             <Text style={styles.text}>¿Ya tienes una cuenta? </Text>
-            <Text style={styles.link}>Inicia sesión aquí</Text>
+            <Link to={{ screen: 'Login'}} style={styles.link}>Inicia sesión aquí</Link>
           </View>
       </View>
     </ScrollView>
@@ -78,7 +79,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: 'white'
   },
   Titulo: {
     fontFamily: 'System',

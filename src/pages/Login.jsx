@@ -2,6 +2,7 @@ import React from 'react'
 import {View, Text, StyleSheet, Image, Dimensions, TextInput, TouchableOpacity, ScrollView} from 'react-native'
 import { Formik } from 'formik'
 import { FontAwesome } from '@expo/vector-icons'
+import { Link } from '@react-navigation/native'
 
 let { height, width } = Dimensions.get('window')
 
@@ -46,15 +47,15 @@ function Login() {
               </>
             )}
           </Formik>
-          <Text style={styles.forgotPassword}>¿Olvidaste la contraseña?</Text>
+          <Link to={{ screen: 'PasswordRestart'}} style={styles.forgotPassword}>¿Olvidaste la contraseña?</Link>
         </View>
         <View style={styles.LoginButton}>
           <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Login</Text>
+          <Link to={{ screen: 'Main'}} style={styles.buttonText}>Login</Link>
           </TouchableOpacity>
           <View style={styles.centerText}>
             <Text style={styles.text}>¿No tienes una cuenta? </Text>
-            <Text style={styles.link}>Crea una aquí</Text>
+            <Link to={{ screen: 'Register'}} style={styles.link}>Crea una aquí</Link>
           </View>
         </View>
       </ScrollView>
@@ -66,7 +67,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: 'white'
   },
   image:{
     width: '80%',

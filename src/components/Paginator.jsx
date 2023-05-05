@@ -12,13 +12,13 @@ const Paginator = ({ data, scrollX, index}) => {
 
             const dotWidth = scrollX.interpolate({
                 inputRange,
-                outputRange: [12, 30, 12],
+                outputRange: [12, 12, 12],
                 extrapolate: 'clamp'
             })
 
             const backgroundColor = scrollX.interpolate({
                 inputRange,
-                outputRange: ['#ccc', '#000', '#ccc'],
+                outputRange: ['#ccc', '#0038FF', '#ccc'],
                 extrapolate: 'clamp'
             })
 
@@ -38,12 +38,7 @@ export default Paginator
 
 const styles = StyleSheet.create({
     container:{
-        position: 'absolute',
-        bottom: 50,
         flexDirection: 'row',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center'
     },  
     dot:{
         width: 12,
@@ -56,3 +51,15 @@ const styles = StyleSheet.create({
         backgroundColor: 'black'
     }
 })
+
+{/**
+container:{
+        position: 'absolute',
+        bottom: 50,
+        flexDirection: 'row',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },  
+
+*/}
