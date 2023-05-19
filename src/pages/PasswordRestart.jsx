@@ -2,8 +2,15 @@ import React from 'react'
 import {View, Text, ScrollView, StyleSheet, TouchableOpacity, TextInput} from 'react-native'
 import { Formik } from 'formik'
 import { FontAwesome } from '@expo/vector-icons'
+import useAuth from '../hooks/useAuth'
 
 function PasswordRestart() {
+  const { cambiarContrasenia } = useAuth()
+
+  const handleSubmit = (values) => {
+    cambiarContrasenia(values);
+  };
+
   return (
     <ScrollView contentContainerStyle = { styles.container } keyboardShouldPersistTaps='always'>
         <Text style={styles.Titulo}>Reestablecer contraseña</Text>
@@ -25,13 +32,13 @@ function PasswordRestart() {
                     placeholder = 'Correo Electrónico'
                   />
                 </View>
+                <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                  <Text style={styles.buttonText}>Enviar</Text>
+                </TouchableOpacity>
               </View>
             )}
       </Formik>
 
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Enviar</Text>
-        </TouchableOpacity>
     </ScrollView>
   )
 }
@@ -59,9 +66,11 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#0038FF',
     borderRadius: 50,
-    width: '80%',
+    width: '100%',
     alignItems: 'center',
-    padding: 10,
+    marginVertical: '5%',
+    paddingHorizontal: '30%',
+    paddingVertical: '2.5%'
   },
   buttonText: {
     color: '#FFFFFF',

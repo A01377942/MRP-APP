@@ -3,68 +3,38 @@ import {View, Text, ScrollView, StyleSheet, TouchableOpacity, TextInput} from 'r
 import { Formik } from 'formik'
 import { FontAwesome } from '@expo/vector-icons'
 import { Link } from '@react-navigation/native'
+import useAuth from '../hooks/useAuth'
+import RegisterForm from '../components/RegisterForm'
+
+
 
 function Register() {
+  const { registrarUsuario } = useAuth()
+
+  const handleSubmit = (values) => {
+    registrarUsuario(values);
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps='always'>
       <Text style={styles.Titulo}>Crea tu Cuenta</Text>
       
       <Formik
-            initialValues={{ email: '', password: '', userName: '', passwordConfirm: ''}}
-            onSubmit={values => console.log(values)}
+            initialValues={{ email: '', password: '', nombre: '', passwordConfirm: ''}}
+            onSubmit={handleSubmit}
           >
-            {({handleChange, handleBlur, handleSubmit, values}) =>(
-              <View style = {styles.form}>
-                <View style={styles.inputContainer}>
-                    <FontAwesome name="user" size={24} color ='#9A9A9A' />
-                    <TextInput 
-                      style={styles.input}
-                      onChangeText={handleChange('userName')}
-                      onBlur={handleBlur('userName')}
-                      value={values.userName}
-                      placeholder = 'Nombre de Usuario'
-                    />
-                </View>
-                <View style={styles.inputContainer}>
-                  <FontAwesome name="envelope" size={24} color ='#9A9A9A' />
-                  <TextInput 
-                    style={styles.input}
-                    onChangeText={handleChange('email')}
-                    onBlur={handleBlur('email')}
-                    value={values.email}
-                    placeholder = 'Correo Electronico'
-                  />
-                </View>
-                <View style={styles.inputContainer}>
-                  <FontAwesome name="lock" size={24} color ='#9A9A9A' />
-                  <TextInput 
-                    style={styles.input}
-                    onChangeText={handleChange('password')}
-                    onBlur={handleBlur('password')}
-                    value={values.password}
-                    placeholder = 'Contraseña'
-                    secureTextEntry={true}
-                  />
-                </View>
-                <View style={styles.inputContainer}>
-                  <FontAwesome name="lock" size={24} color ='#9A9A9A' />
-                  <TextInput 
-                    style={styles.input}
-                    onChangeText={handleChange('passwordConfirm')}
-                    onBlur={handleBlur('passwordConfirm')}
-                    value={values.passwordConfirm}
-                    placeholder = 'Confirmar contraseña'
-                    secureTextEntry={true}
-                  />
-                </View>
-              </View>
+            {({handleChange, handleSubmit, values, errors, touched}) =>(
+              <RegisterForm 
+                handleSubmit={handleSubmit}
+                handleChange={handleChange}
+                values={values}
+                errors={errors}
+                touched={touched}
+              />
             )}
       </Formik>
 
-      <View style={styles.LoginButton}>
-          <TouchableOpacity style={styles.button}>
-          <Link to={{ screen: 'Login'}} style={styles.buttonText}>Register</Link>
-          </TouchableOpacity>
+      <View>
           <View style={styles.centerText}>
             <Text style={styles.text}>¿Ya tienes una cuenta? </Text>
             <Link to={{ screen: 'Login'}} style={styles.link}>Inicia sesión aquí</Link>
@@ -87,9 +57,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold'
   },
-  LoginButton:{
-    width: '80%'  
-  },
   button: {
     backgroundColor: '#0038FF',
     borderRadius: 50,
@@ -103,15 +70,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
   },
-  centerText: {
-    flexDirection: 'row',
-    width: '90%',
-    alignContent: 'center',
-    justifyContent: 'center'
-  },
   text:{
     fontSize: 12,
     fontWeight: 'bold'
+  },
+  centerText:{
+    flexDirection: 'row'
   },
   link:{
     fontSize: 12,

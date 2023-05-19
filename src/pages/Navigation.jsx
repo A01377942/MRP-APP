@@ -5,7 +5,6 @@ import { NavigationContainer } from '@react-navigation/native'
 import { FontAwesome } from '@expo/vector-icons'
 
 //Screens
-import Login from './Login'
 import Home from './Home'
 import Search from './Search'
 import Settings from './Settings'
@@ -55,8 +54,6 @@ const MyTabs = () => {
 
 export default function Navigation(){
     return(
-        <NavigationContainer>
-            <MyTabs />
-        </NavigationContainer>
+        <MyTabs />
     )
 }

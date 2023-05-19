@@ -61,7 +61,7 @@ function Onboarding() {
           <Paginator data={slides} scrollX={scrollX} index={index} />
 
           <TouchableOpacity>
-            <Text style={styles.title}>Siguiente</Text>
+            <Text style={styles.title}></Text>
           </TouchableOpacity>
         </View>
       </View>

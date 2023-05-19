@@ -1,12 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import Main from './src/components/Main';
-import Navigation from './src/pages/Navigation';
+import { NavigationContainer } from '@react-navigation/native';
+import { AuthProvider } from './src/context/AuthProvider';
+import { ExamenesProvider } from './src/context/ExamenesProvider';
 
 export default function App() {
   return (
     <>
-      <StatusBar style='light' />
-      <Main />
+      <AuthProvider>
+        <ExamenesProvider>
+          <StatusBar style='light' />
+          <NavigationContainer>
+            <Main />
+          </NavigationContainer>
+        </ExamenesProvider>
+      </AuthProvider>
     </>
   );
 }
