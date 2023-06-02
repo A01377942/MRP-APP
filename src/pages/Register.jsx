@@ -1,18 +1,32 @@
 import React from 'react'
 import {View, Text, ScrollView, StyleSheet, TouchableOpacity, TextInput} from 'react-native'
 import { Formik } from 'formik'
-import { FontAwesome } from '@expo/vector-icons'
+import { Alert } from 'react-native'
 import { Link } from '@react-navigation/native'
 import useAuth from '../hooks/useAuth'
 import RegisterForm from '../components/RegisterForm'
+import { useNavigation } from '@react-navigation/native'
 
 
 
 function Register() {
   const { registrarUsuario } = useAuth()
+  const navigaton = useNavigation()
 
   const handleSubmit = (values) => {
     registrarUsuario(values);
+    Alert.alert(
+      'Ya estas registrado', 
+      'Ingresa a tu correo para confirmar tu cuenta y poder ingresar',
+      [
+          {
+              text: 'OK',
+              onPress: () => {
+                  navigaton.navigate('Login')
+              }
+          }
+      ]
+      )
   };
 
   return (

@@ -12,6 +12,8 @@ import Login from '../pages/Login'
 import Navigation from '../pages/Navigation'
 import Register from '../pages/Register'
 import PasswordRestart from '../pages/PasswordRestart'
+import ExamDetail from '../pages/ExamDetail';
+import ExamQuestions from '../pages/ExamQuestions';
 
 /**
  * rnfes
@@ -25,6 +27,8 @@ const { isSignedIn } = useAuth()
             {isSignedIn ? (
                     <Stack.Navigator>
                        <Stack.Screen name='navigation' component={Navigation} options={{ headerShown: false }}/>
+                       <Stack.Screen name="ExamDetail" component={ExamDetail} options={{ headerShown: false }}/>
+                       <Stack.Screen name="ExamQuestions" component={ExamQuestions} options={{ headerShown: false }}/>
                     </Stack.Navigator>
                 ): (
                     <Stack.Navigator

@@ -1,14 +1,11 @@
 import { useState, useEffect, createContext } from 'react'
-import clienteAxios from '../config/clienteAxios'
-import { Alert } from 'react-native'
 import axios from 'axios'
 
 const AuthContext = createContext()
 
 const AuthProvider = ({children}) => {
 
-    const [isSignedIn, setIsSignedIn] = useState(true)
-    const [cargando, setCargando] = useState(true)
+    const [isSignedIn, setIsSignedIn] = useState(false)
 
     const signIn = async ({email, password}) =>{
         if(email == '' && password == ''){
@@ -39,18 +36,7 @@ const AuthProvider = ({children}) => {
                     "email": email
                 })
                 console.log(response.data)
-                Alert.alert(
-                    'Ya estas registrado', 
-                    'Ingresa a tu correo para confirmar tu cuenta y poder ingresar',
-                    [
-                        {
-                            text: 'OK',
-                            onPress: () => {
-                                console.log('Ir a la pantalla inicial')
-                            }
-                        }
-                    ]
-                    )
+               
             }catch(error){
                 console.log(error)
             }

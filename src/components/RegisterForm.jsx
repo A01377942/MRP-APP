@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Dimensions, TextInput, TouchableOpacity} from 'react-native'
 import { Link } from '@react-navigation/native'
 import { FontAwesome } from '@expo/vector-icons'
+import { Alert } from 'react-native'
 import React from 'react'
 
 const RegisterForm = ({ handleSubmit, handleChange, values, errors, touched }) => {
