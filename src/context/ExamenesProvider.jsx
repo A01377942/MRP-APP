@@ -1,6 +1,7 @@
 import { useState, createContext } from 'react'
 import clienteAxios from '../config/clienteAxios'
 import axios from 'axios'
+import { BACKEND_URL } from '@env'
 
 const ExamenesContext = createContext()
 
@@ -9,7 +10,7 @@ function ExamenesProvider({ children }) {
 
   const obtenerExamenes = async () => {
     try {
-      const response = await axios.get('http://192.168.100.28:4000/api/examenes')
+      const response = await axios.get(`${BACKEND_URL}/api/examenes`)
       return response.data.msg
     } catch (error) {
       console.log(error)
@@ -21,22 +22,20 @@ function ExamenesProvider({ children }) {
       return []
     }
     try {
-      const response = await axios.post('http://192.168.100.28:4000/api/examenes/buscar', {
+      const response = await axios.post(`${BACKEND_URL}/api/examenes/buscar`, {
         "texto": termino
       })
-      console.log(response.data)
       return response.data.msg
     } catch (error) {
       console.log(error)
     }
   }
 
-  const obtenerExamen = async (id, password = null) =>{
+  const obtenerExamen = async (id) =>{
     try {
-      const response = await axios.post(`http://192.168.100.28:4000/api/examenes/${id}`, {
-        "password": password
-      })
-      console.log("Reponse from peticion: ", response.data.examen)
+      const response = await axios.get(`${BACKEND_URL}/api/examenes/${id}`)
+      console.log('Preguntas Obtenidas')
+      return response.data.examen.preguntas
     } catch (error) {
       console.log(error)
     }

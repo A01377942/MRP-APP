@@ -6,6 +6,7 @@ import { Link } from '@react-navigation/native'
 import useAuth from '../hooks/useAuth'
 import RegisterForm from '../components/RegisterForm'
 import { useNavigation } from '@react-navigation/native'
+import { COLOR_PRINCIPAL } from '@env'
 
 
 
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   button: {
-    backgroundColor: '#0038FF',
+    backgroundColor: COLOR_PRINCIPAL,
     borderRadius: 50,
     width: '100%',
     alignItems: 'center',
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
   link:{
     fontSize: 12,
     fontWeight: 'bold',
-    color: '#0038FF',
+    color: COLOR_PRINCIPAL,
     textDecorationLine: 'underline'
   },
   inputContainer: {

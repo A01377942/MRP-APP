@@ -3,12 +3,28 @@ import {View, Text, ScrollView, StyleSheet, TouchableOpacity, TextInput} from 'r
 import { Formik } from 'formik'
 import { FontAwesome } from '@expo/vector-icons'
 import useAuth from '../hooks/useAuth'
+import { Alert } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { COLOR_PRINCIPAL } from '@env'
 
 function PasswordRestart() {
   const { cambiarContrasenia } = useAuth()
+  const navigation = useNavigation()
 
   const handleSubmit = (values) => {
     cambiarContrasenia(values);
+    Alert.alert(
+      'Pasos Enviados', 
+      'Ve a tu correo para continuar con el reestablecimiento de password',
+      [
+          {
+              text: 'OK',
+              onPress: () => {
+                navigation.navigate('Login')
+              }
+          }
+      ]
+      )
   };
 
   return (
@@ -64,7 +80,7 @@ const styles = StyleSheet.create({
     width: '80%'
   },
   button: {
-    backgroundColor: '#0038FF',
+    backgroundColor: COLOR_PRINCIPAL,
     borderRadius: 50,
     width: '100%',
     alignItems: 'center',

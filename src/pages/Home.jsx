@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity} from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import useExamanes from '../hooks/useExamanes'
 import { ScrollView } from 'react-native-gesture-handler'
 import Exam from '../components/Exam'
+import { NOMBRE_MARCA } from '@env';
+
+const windowHeight = Dimensions.get('window').height;
 
 const Home = () => {
   const { obtenerExamenes } = useExamanes()
@@ -28,7 +31,7 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.TituloPrincipal}>MRP Capacitaciones</Text>
+      <Text style={styles.TituloPrincipal}>{NOMBRE_MARCA}</Text>
       <View>
         <Text style={styles.bestExam}>Examenes agregados recientemente</Text>
         <ScrollView vertical>
@@ -48,7 +51,7 @@ export default Home
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: '100%',
+    height: windowHeight * 0.85
   },
   TituloPrincipal: {
     fontFamily: 'System',

@@ -1,4 +1,5 @@
 import { StyleSheet, Animated, View, Dimensions } from 'react-native'
+import { COLOR_PRINCIPAL } from '@env'
 import React from 'react'
 
 const {width} = Dimensions.get('screen')
@@ -18,7 +19,7 @@ const Paginator = ({ data, scrollX, index}) => {
 
             const backgroundColor = scrollX.interpolate({
                 inputRange,
-                outputRange: ['#ccc', '#0038FF', '#ccc'],
+                outputRange: ['#ccc', COLOR_PRINCIPAL, '#ccc'],
                 extrapolate: 'clamp'
             })
 

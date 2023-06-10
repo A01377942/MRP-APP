@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Dimensions, TextInput, TouchableOpacity} from '
 import { Link } from '@react-navigation/native'
 import { FontAwesome } from '@expo/vector-icons'
 import React from 'react'
+import { COLOR_PRINCIPAL } from '@env'
 
 let { height, width } = Dimensions.get('window')
 
@@ -9,7 +10,7 @@ const LoginForm = ({ handleSubmit, handleChange, values, errors, touched }) => {
     return(
         <View style={styles.container}>
             <View style={styles.inputContainer}>
-                  <FontAwesome name="envelope" size={24} color ='#9A9A9A' />
+                  <FontAwesome name="envelope" size={24} />
                   <TextInput 
                     style={styles.input}
                     onChangeText={handleChange('email')}
@@ -21,7 +22,7 @@ const LoginForm = ({ handleSubmit, handleChange, values, errors, touched }) => {
                   {errors.email && touched.email && <Text style={styles.error}>{errors.email}</Text>}
             </View>
             <View style={styles.inputContainer}>
-                  <FontAwesome name="lock" size={24} color ='#9A9A9A' />
+                  <FontAwesome name="lock" size={24}/>
                   <TextInput 
                     style={styles.input}
                     onChangeText={handleChange('password')}
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
     marginLeft: 10
   },
   button: {
-    backgroundColor: '#0038FF',
+    backgroundColor: COLOR_PRINCIPAL,
     borderRadius: 50,
     width: width*0.80,
     alignItems: 'center',
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     marginTop: '1%',
     fontSize: 12,
     fontWeight: 'bold',
-    color: '#0038FF',
+    color: COLOR_PRINCIPAL,
     marginBottom: '10%'
   },
   error: {

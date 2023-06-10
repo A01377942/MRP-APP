@@ -3,6 +3,7 @@ import { Link } from '@react-navigation/native'
 import { FontAwesome } from '@expo/vector-icons'
 import { Alert } from 'react-native'
 import React from 'react'
+import { COLOR_PRINCIPAL } from '@env'
 
 const RegisterForm = ({ handleSubmit, handleChange, values, errors, touched }) => {
   return (
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
         marginLeft: 10
     },
     button: {
-        backgroundColor: '#0038FF',
+        backgroundColor: COLOR_PRINCIPAL,
         borderRadius: 50,
         width: '100%',
         alignItems: 'center',
@@ -93,50 +94,3 @@ const styles = StyleSheet.create({
         color: 'white'
     }
 })
-
-/*
-<View style = {styles.form}>
-                <View style={styles.inputContainer}>
-                    <FontAwesome name="user" size={24} color ='#9A9A9A' />
-                    <TextInput 
-                      style={styles.input}
-                      onChangeText={handleChange('nombre')}
-                      value={values.nombre}
-                      placeholder = 'Nombre de Usuario'
-                    />
-                </View>
-                <View style={styles.inputContainer}>
-                  <FontAwesome name="envelope" size={24} color ='#9A9A9A' />
-                  <TextInput 
-                    style={styles.input}
-                    onChangeText={handleChange('email')}
-                    value={values.email}
-                    placeholder = 'Correo Electronico'
-                  />
-                </View>
-                <View style={styles.inputContainer}>
-                  <FontAwesome name="lock" size={24} color ='#9A9A9A' />
-                  <TextInput 
-                    style={styles.input}
-                    onChangeText={handleChange('password')}
-                    value={values.password}
-                    placeholder = 'Contraseña'
-                    secureTextEntry={true}
-                  />
-                </View>
-                <View style={styles.inputContainer}>
-                  <FontAwesome name="lock" size={24} color ='#9A9A9A' />
-                  <TextInput 
-                    style={styles.input}
-                    onChangeText={handleChange('passwordConfirm')}
-                    onBlur={handleBlur('passwordConfirm')}
-                    value={values.passwordConfirm}
-                    placeholder = 'Confirmar contraseña'
-                    secureTextEntry={true}
-                  />
-                </View>
-                <TouchableOpacity style={styles.button}>
-                  <Link to={{ screen: 'Login'}} style={styles.buttonText}>Register</Link>
-                </TouchableOpacity>
-              </View>
-              */

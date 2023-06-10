@@ -4,6 +4,7 @@ import { FontAwesome } from '@expo/vector-icons'
 import useExamanes from '../hooks/useExamanes'
 import { useNavigation } from '@react-navigation/native'
 import Exam from '../components/Exam';
+import { NOMBRE_MARCA } from '@env';
 
 const Search = () => {
   const [searchText, setSearchText] = useState('');
@@ -13,7 +14,6 @@ const Search = () => {
 
 
   const handleSearch = async () => {
-    console.log('Realizando búsqueda:', searchText);
     setExamenes([])
     try {
       const examenesObtenidos = await buscarExamen(searchText)
@@ -33,7 +33,7 @@ const Search = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.TituloPrincipal}>MRP Capacitaciones</Text>
+      <Text style={styles.TituloPrincipal}>{NOMBRE_MARCA}</Text>
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.input}

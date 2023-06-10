@@ -1,21 +1,31 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
-import React from 'react'
+import React, { useEffect } from 'react'
 import useAuth from '../hooks/useAuth'
+import { useNavigation } from '@react-navigation/native';
+import { NOMBRE_MARCA } from '@env';
+
 
 const Settings = () => {
-  const { cerrarSesion } = useAuth()
+  const { cerrarSesion} = useAuth()
+  const navicator = useNavigation()
+
+  const handleMostrarExamens = async () => {
+    navicator.navigate("ExamHistory")
+  }
   return (
     <View style={styles.principal}>
-      <Text style={styles.TituloPrincipal}>MRP Cap acitaciones</Text>
+      <Text style={styles.TituloPrincipal}>{NOMBRE_MARCA}</Text>
       <View style={styles.container}>
-              <TouchableOpacity 
-                style={[styles.closeSession, styles.buttonContent]}
-                onPress={cerrarSesion}
-              >
-                <Text style={styles.buttonText}>Cerrar Sesión</Text>
-                <FontAwesome name="window-close" size={40} color={'red'} />
-              </TouchableOpacity>
+        <View styles={styles.buttonContainer}>
+                <TouchableOpacity 
+                  style={[styles.closeSession, styles.buttonContent]}
+                  onPress={cerrarSesion}
+                >
+                  <Text style={styles.buttonText}>Cerrar Sesión</Text>
+                  <FontAwesome name="window-close" size={40} color={'red'} />
+                </TouchableOpacity>
+        </View>
       </View>
     </View>
   )
@@ -96,48 +106,20 @@ const styles = StyleSheet.create({
   buttonContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
   closeSession:{
     position: 'absolute',
+  },
+  historialButton: {
+  width: '40%',
+  borderRadius: 10,
+  backgroundColor: 'orange',
+  paddingVertical: 10,
+  paddingHorizontal: 15,
+  marginHorizontal: 15,
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
   }
 })
-
-/*
-<View style={styles.principal}>
-      <Text style={styles.TituloPrincipal}>MRP Capacitaciones</Text>
-      <View style={styles.container}>
-          <View style={styles.userData}>
-            <FontAwesome name="user" size={124} color={'black'} />
-            <Text style={styles.nombre}>Rafael Romero</Text>
-          </View>
-          <View style={styles.examenes}>
-            <TouchableOpacity style={styles.button}>
-              <FontAwesome style={styles.icon} name="th-list" size={24} color={'gold'} />
-              <Text style={styles.examData}>Examenes Contestados</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-              <FontAwesome style={styles.icon} name="star" size={24} color={'gold'} />
-              <Text style={styles.examData}>Examenes Premium</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.lastButtons}>
-            <TouchableOpacity style={styles.buttonContent}>
-                <Text style={styles.buttonText}>Explorar cursos MRP</Text>
-                <FontAwesome name="search" size={40} color={'blue'} />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContent}>
-                <Text style={styles.buttonText}>Contacto</Text>
-                <FontAwesome name="question-circle" size={40} color={'gold'} />
-              </TouchableOpacity>
-              <TouchableOpacity 
-                style={[styles.closeSession, styles.buttonContent]}
-                onPress={cerrarSesion}
-              >
-                <Text style={styles.buttonText}>Cerrar Sesión</Text>
-                <FontAwesome name="window-close" size={40} color={'red'} />
-              </TouchableOpacity>
-          </View>
-      </View>
-    </View>
-*/

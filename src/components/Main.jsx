@@ -14,6 +14,8 @@ import Register from '../pages/Register'
 import PasswordRestart from '../pages/PasswordRestart'
 import ExamDetail from '../pages/ExamDetail';
 import ExamQuestions from '../pages/ExamQuestions';
+import GratePage from '../pages/GratePage';
+import ExamHistori from '../pages/ExamHistori';
 
 /**
  * rnfes
@@ -29,6 +31,8 @@ const { isSignedIn } = useAuth()
                        <Stack.Screen name='navigation' component={Navigation} options={{ headerShown: false }}/>
                        <Stack.Screen name="ExamDetail" component={ExamDetail} options={{ headerShown: false }}/>
                        <Stack.Screen name="ExamQuestions" component={ExamQuestions} options={{ headerShown: false }}/>
+                       <Stack.Screen name="GradePage" component={GratePage} options={{ headerShown: false }}/>
+                       <Stack.Screen name="ExamHistory" component={ExamHistori} options={{ headerShown: false }}/>
                     </Stack.Navigator>
                 ): (
                     <Stack.Navigator
@@ -59,33 +63,5 @@ const styles = StyleSheet.create({
         flexDirection:'column'
     }
 })
-
-{/**
-<NavigationContainer>
-                <Stack.Navigator
-                    initialRouteName='Onboarding'
-                    screenOptions={{ headerShown: false }}
-                >
-                    <Stack.Screen 
-                        name="Login" 
-                        component={Login} 
-                        options={{
-                            headerShown: false
-                        }}
-                    />
-                    <Stack.Screen 
-                        name="Register" 
-                        component={Register} 
-                        options={{
-                                headerShown: false
-                        }}
-                    />
-                    <Stack.Screen name="PasswordRestart" component={PasswordRestart} options={{ headerShown: false }}/>
-                    <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }}/>
-                    <Stack.Screen name='Main' component={Navigation} options={{ headerShown: false }}/>
-                </Stack.Navigator>
-            </NavigationContainer>
-
-*/}
 
 export default Main

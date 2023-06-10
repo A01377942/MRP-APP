@@ -1,22 +1,26 @@
 import { useState, useEffect, createContext } from 'react'
+import { Alert } from 'react-native'
 import axios from 'axios'
+import { BACKEND_URL } from '@env'
 
 const AuthContext = createContext()
 
 const AuthProvider = ({children}) => {
 
     const [isSignedIn, setIsSignedIn] = useState(false)
+    const [perfil, setPerfil] = useState({})
+    const [examenesRealizados, setExamenesRealizados] = useState({})
 
     const signIn = async ({email, password}) =>{
         if(email == '' && password == ''){
             return Alert.alert('Error al iniciar sesión', 'Comprueba que hayas ingresado los dos datos')
         }
         try{
-            const response = await axios.post('http://192.168.100.28:4000/api/usuarios/login', {
+            const response = await axios.post(`${BACKEND_URL}/api/usuarios/login`, { 
                 "email": email,
                 "password": password
             });
-            console.log(response.data)
+            setPerfil(response.data)
             setIsSignedIn(true)
         } catch(err){
             console.log(err)
@@ -30,13 +34,11 @@ const AuthProvider = ({children}) => {
             Alert.alert('Error en contraseñas', 'Las contraseñas son diferentes')
         }else{
             try{
-                const response = await axios.post('http://192.168.100.28:4000/api/usuarios/', {
+                await axios.post(`${BACKEND_URL}/api/usuarios/`, {
                     "nombre": nombre,
                     "password": password,
                     "email": email
                 })
-                console.log(response.data)
-               
             }catch(error){
                 console.log(error)
             }
@@ -45,11 +47,9 @@ const AuthProvider = ({children}) => {
 
     const cambiarContrasenia = async ({ email }) =>{
         try{
-            const response = await axios.post('http://192.168.100.28:4000/api/usuarios/olvide-password', {
+            await axios.post(`${BACKEND_URL}/api/usuarios/olvide-password`, {
                 "email": email
             })
-            console.log(response.data.msg)
-            Alert.alert('Pasos Enviados', 'Ve a tu correo para continuar con el reestablecimiento de password')
         }catch(error){
             console.log(error)
         }
@@ -59,11 +59,23 @@ const AuthProvider = ({children}) => {
         setIsSignedIn(false)
     }
 
+    const obtenerPerfil = async () => {
+        try{
+            const response = await axios.post(`${BACKEND_URL}/api/usuarios/perfil`, {
+                "email": perfil.email
+            })
+            return response.data
+        }catch(error){
+            console.log(error)
+        }
+    }
+
     return (
         <AuthContext.Provider
             value={{
                 isSignedIn,
                 signIn,
+                obtenerPerfil,
                 registrarUsuario,
                 cambiarContrasenia,
                 cerrarSesion

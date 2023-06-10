@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { FontAwesome } from '@expo/vector-icons'
+import {COLOR_PRINCIPAL} from '@env'
 
 //Screens
 import Home from './Home'
@@ -16,7 +17,7 @@ const MyTabs = () => {
         <Tab.Navigator
             initialRouteName='Home'
             screenOptions={{
-                tabBarActiveTintColor: '#0038FF',
+                tabBarActiveTintColor: COLOR_PRINCIPAL,
                 headerShown: false
             }}
         >

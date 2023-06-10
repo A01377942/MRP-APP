@@ -4,6 +4,7 @@ import { Formik } from 'formik'
 import { Link } from '@react-navigation/native'
 import useAuth from '../hooks/useAuth'
 import LoginForm from '../components/LoginForm'
+import { COLOR_PRINCIPAL, LOGO } from '@env'
 
 //Validation Schema
 import loginValidationSchema from '../validationSchema/login.js'
@@ -21,7 +22,7 @@ function Login() {
     <ScrollView contentContainerStyle = { styles.container } keyboardShouldPersistTaps='always'>
       <Image 
         style = { styles.image}
-        source={require('../../assets/MRP-Logo.png')}
+        source={require('../../assets/Logo.png')}
       />
       <View style={styles.LoginSpace}>
         <Text style={styles.Titulo}>Iniciar Sesión</Text>
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
   link:{
     fontSize: 12,
     fontWeight: 'bold',
-    color: '#0038FF',
+    color: COLOR_PRINCIPAL,
     textDecorationLine: 'underline'
   },
   buttonText: {
